@@ -45,9 +45,10 @@ function newQuote() {
 // 인용문 API 가져오기
 async function getQuotes() {
   loading();
+  const proxyUrl = "https://cors-anywhere.herokuapp.com/";
   const apiUrl = "https://zenquotes.io/api/quotes";
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(proxyUrl + apiUrl);
     apiQuotes = await response.json();
     newQuote();
   } catch (error) {
@@ -55,6 +56,22 @@ async function getQuotes() {
     alert("문구를 불러올 수 없습니다.");
   }
 }
+
+// async function getQuotes() {
+//   loading();
+//   const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+//   const apiUrl =
+//     "http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json";
+//   try {
+//     const response = await fetch(proxyUrl + apiUrl);
+//     const data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     getQuotes();
+//     alert("문구를 불러올 수 없습니다.", error);
+//     console.log("문구를 불러올 수 없습니다.", error);
+//   }
+// }
 
 // 트위터에 인용문 트윗
 function tweetQuote() {
